@@ -24,7 +24,21 @@ public class Population {
 		return dna;
 	}
 	
+	public void calculateFitnessValues() {
+		for(DNA dna: populationDNA) {
+			dna.calculateFitnessValue(populationGoal);
+		}
+	}
+	
 	public void printPopulationDNA () {
 		System.out.println(Arrays.toString(populationDNA));
+	}
+	
+	public void printPopulationDNAFitness() {
+		double dnafitness[] = new double[populationSize];
+		for(int i = 0; i < populationSize; i++) {
+			dnafitness[i] = populationDNA[i].getFitnessValue();
+		}
+		System.out.println(Arrays.toString(dnafitness));
 	}
 }

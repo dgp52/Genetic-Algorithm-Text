@@ -25,6 +25,14 @@ public class Gene {
 		return (char)(r.nextInt(26) + 'a');
 	}
 	
+	public char[] getGene() {
+		return gene;
+	}
+	
+	public int getSize() {
+		return size;
+	}
+	
 	@Override
 	public String toString() {
 		return String.valueOf(gene);

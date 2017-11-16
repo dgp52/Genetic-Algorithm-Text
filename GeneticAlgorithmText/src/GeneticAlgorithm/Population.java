@@ -30,6 +30,24 @@ public class Population {
 		}
 	}
 	
+	public void naturalSelection () {
+		ProbabilityGenerator<DNA> pg = new ProbabilityGenerator<>();
+		for(DNA dna: populationDNA) {
+			pg.addElementProbability(dna, dna.getFitnessValue());
+			//System.out.println(dna.getGene());
+			//System.out.println(dna.getFitnessValue());
+		}
+		DNA parents[] = new DNA[2];
+		for(int i =0; i < parents.length; i++) {
+			parents[i] = pg.sumAndPick();
+		}
+		
+		pg.printElements();
+		pg.printCount();
+		
+		
+	}
+	
 	public void printPopulationDNA () {
 		System.out.println(Arrays.toString(populationDNA));
 	}

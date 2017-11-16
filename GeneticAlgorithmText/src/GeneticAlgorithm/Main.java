@@ -9,6 +9,8 @@ public class Main {
 		
 		population.calculateFitnessValues();
 		population.printPopulationDNAFitness();
+		
+		population.naturalSelection();
 	}
 
 }

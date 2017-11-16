@@ -1,5 +1,7 @@
 package GeneticAlgorithm;
 
+import java.util.Random;
+
 public class DNA {
 	private int size;
 	private Gene gene;
@@ -22,6 +24,39 @@ public class DNA {
 		//adding 0.1 for all elements to have equal chance to get picked
 		//This is a case where the fitness value is 0.0
 		fitnessValue = Math.pow((double)value/(double)gene.getSize(), 2) + 0.1;
+	}
+	
+	public DNA crossOver(DNA partner) {
+		DNA child = new DNA(size);
+		char parentOne[] = gene.getGene();
+		char parentTwo[] = partner.gene.getGene();
+		char childGene[] = child.gene.getGene();
+		Random random = new Random();
+		int index = random.nextInt(gene.getSize());
+		for(int i = 0; i < gene.getSize(); i++) {
+			if(i > index) {
+				childGene[i] = parentOne[i];
+			} else {
+				childGene[i] = parentTwo[i];
+			}
+		}
+		return child;
+	}
+	
+	public void mutation(double mutationRate) {
+		for(int i =0; i < gene.getSize(); i++) {
+			Random random = new Random();
+			char childGene[] = gene.getGene();
+			//Pick a number between 0 and 1
+//			for (int j = 0; j < 100; j ++ ) {
+//				double r = 1*random.nextDouble();
+//				System.out.println(r);
+//			}
+			double r = 1*random.nextDouble();
+			if(r < mutationRate) {
+				childGene[i] = gene.getRandomChar();
+			}
+		}
 	}
 
 	public Gene getGene() {

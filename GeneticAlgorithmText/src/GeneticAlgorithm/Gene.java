@@ -20,7 +20,7 @@ public class Gene {
 		return g;
 	}
 	
-	private char getRandomChar() {
+	public char getRandomChar() {
 		Random r = new Random();
 		return (char)(r.nextInt(26) + 'a');
 	}

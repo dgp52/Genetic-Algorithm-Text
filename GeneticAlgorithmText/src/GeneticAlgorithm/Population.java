@@ -31,21 +31,22 @@ public class Population {
 	}
 	
 	public void naturalSelection () {
-		ProbabilityGenerator<DNA> pg = new ProbabilityGenerator<>();
-		for(DNA dna: populationDNA) {
-			pg.addElementProbability(dna, dna.getFitnessValue());
-			//System.out.println(dna.getGene());
-			//System.out.println(dna.getFitnessValue());
+		DNA newGeneration[] = new DNA[populationSize];
+		for(int i = 0; i < populationSize; i++) {
+			ProbabilityGenerator<DNA> pg = new ProbabilityGenerator<>();
+			for(DNA dna: populationDNA) {
+				pg.addElementProbability(dna, dna.getFitnessValue());
+			}
+			DNA parents[] = new DNA[2];
+			for(int j =0; j < parents.length; j++) {
+				parents[j] = pg.sumAndPick();
+			}
+			//Cross Over AKA mixing both parents gene
+			DNA offspring = parents[0].crossOver(parents[1]);
+			offspring.mutation(populationMutation);
+			
 		}
-		DNA parents[] = new DNA[2];
-		for(int i =0; i < parents.length; i++) {
-			parents[i] = pg.sumAndPick();
-		}
-		
-		pg.printElements();
-		pg.printCount();
-		
-		
+		System.out.print(Arrays.toString(newGeneration));
 	}
 	
 	public void printPopulationDNA () {

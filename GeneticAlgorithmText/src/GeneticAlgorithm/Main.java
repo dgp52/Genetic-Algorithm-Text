@@ -1,7 +1,7 @@
 package GeneticAlgorithm;
 
 public class Main {
-	private String targetString = "test";
+	private String targetString = "genetics";
 	private int populationSize = 500;
 	private double mutationRate = 0.0;
 	

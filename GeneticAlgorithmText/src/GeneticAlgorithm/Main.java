@@ -3,14 +3,26 @@ package GeneticAlgorithm;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Population population = new Population(10, 0.03, "test");
+		String targetString = "test";
+		int populationSize = 100;
+		double mutationRate = 0.02;
+		Main main = new Main();
+		main.geneticAlgorithm(populationSize, mutationRate, targetString);	
+	}
+	
+	public void geneticAlgorithm(int populationSize, double mutationRate, String targetString) {
+		Population population = new Population(populationSize, mutationRate, targetString);
 		population.printPopulationDNA();
-		
-		population.calculateFitnessValues();
-		population.printPopulationDNAFitness();
-		
-		population.naturalSelection();
+		while(true) {
+			if(population.checkPopulation()) {
+				break;
+			} else {
+				population.calculateFitnessValues();
+				population.naturalSelection();
+				population.printPopulationDNA();
+			}
+		}
+		System.out.println(population.getGeneration());
 	}
 
 }

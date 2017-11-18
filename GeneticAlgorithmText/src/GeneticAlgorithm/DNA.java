@@ -47,11 +47,6 @@ public class DNA {
 		for(int i =0; i < gene.getSize(); i++) {
 			Random random = new Random();
 			char childGene[] = gene.getGene();
-			//Pick a number between 0 and 1
-//			for (int j = 0; j < 100; j ++ ) {
-//				double r = 1*random.nextDouble();
-//				System.out.println(r);
-//			}
 			double r = 1*random.nextDouble();
 			if(r < mutationRate) {
 				childGene[i] = gene.getRandomChar();

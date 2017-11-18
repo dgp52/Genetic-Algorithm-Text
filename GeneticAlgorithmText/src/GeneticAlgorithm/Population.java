@@ -8,12 +8,14 @@ public class Population {
 	private int populationSize;
 	private double populationMutation;
 	private String populationGoal;
+	private int generation;
 	
 	public Population(int populationSize, double populationMutation, String populationGoal) {
 		this.populationSize = populationSize;
 		this.populationMutation = populationMutation;
 		this.populationGoal = populationGoal;
 		populationDNA = createPopulationDNA(populationSize, populationGoal);
+		generation = 1;
 	}
 	
 	private DNA[] createPopulationDNA(int size, String goal) {
@@ -41,17 +43,39 @@ public class Population {
 			for(int j =0; j < parents.length; j++) {
 				parents[j] = pg.sumAndPick();
 			}
-			//Cross Over AKA mixing both parents gene
+			//pg.printCount();
+			//Cross Over. AKA mixing both parents gene
 			DNA offspring = parents[0].crossOver(parents[1]);
 			offspring.mutation(populationMutation);
-			
+			newGeneration[i] = offspring;			
 		}
-		System.out.print(Arrays.toString(newGeneration));
+		populationDNA = newGeneration;
+		generation++;
 	}
 	
 	public void printPopulationDNA () {
 		System.out.println(Arrays.toString(populationDNA));
 	}
+	
+	public boolean checkPopulation () {
+		boolean result = false;
+		char tg[] = populationGoal.toCharArray();
+		for(int i = 0; i < populationDNA.length; i++) {
+			char g[] = populationDNA[i].getGene().getGene();
+			if (Arrays.equals(g, tg)) {
+				result =  true;
+				break;
+			} else {
+				result =  false;
+			}
+		}
+		return result;
+	}
+	
+	public int getGeneration() {
+		return generation;
+	}
+	
 	
 	public void printPopulationDNAFitness() {
 		double dnafitness[] = new double[populationSize];

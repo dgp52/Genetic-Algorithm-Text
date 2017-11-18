@@ -6,3 +6,5 @@ How does it work?
 3) Pick elements with highest fitness value (use random Number probabilities to pick an element) n times, where n is the size of the population.
 4) Do a cross over or mix two elements n times.
 5) Add a mutation to child element. Go back to step 1 until the the output is same as input.
+
+Note: This algorithm only works with lowercase letters (no space).
